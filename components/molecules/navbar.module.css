@@ -1,13 +1,15 @@
 .header {
   position: fixed;
-  left: 10rem;
+  /* left: 10rem; */
+  /* left: 0; */
   top: 0;
-  right: 10rem;
-  padding: 2rem 0;
+  /* right: 0; */
+  padding: 2rem 10rem;
   color: var(--txtClr);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100vw;
   background: var(--bgClr);
 }
 
@@ -19,7 +21,7 @@
 .header__menu {
   list-style: none;
   display: flex;
-  gap: 5rem;
+  gap: 3rem;
 }
 
 .header__contact {
@@ -63,9 +65,15 @@
   transition: 0.5s;
 }
 
+.icon_one {
+  display: none;
+}
+
 .icon_one.active .hamburger_one {
   background: rgba(0, 0, 0, 0);
 }
+
+
 
 .icon_one.active .hamburger_one:before {
   top: 0;
@@ -106,6 +114,7 @@
   font-size: 1rem;
   border: 1px solid var(--btnClr);
   color: var(--btnClr);
+  cursor: pointer;
 }
 
 .header__menumobile {
@@ -139,15 +148,14 @@
   }
 }
 
-@media screen and (min-width: 42rem) {
+@media screen and (min-width: 45rem) {
   .header__menumobile {
     display: none;
   }
 }
 @media screen and (max-width: 65rem) {
   .header {
-    left: 2rem;
-    right: 2rem;
+    padding: 2rem;
   }
 }
 
