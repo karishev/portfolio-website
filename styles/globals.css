@@ -1,24 +1,9 @@
 :root {
-  --bgClr: #030027;
-  --btnClr: #ff96ad;
-  --txtClr: #fff5fd;
-  --backClr: #151e3f;
+  --bgClr: #FCFCFF;
+  --btnClr: #0AE41F;
+  --txtClr: #241023;
+  --backClr: #799f7c;
   --cardClr: #243264;
-}
-
-:root {
-  --lightBlue: #5bc2e7;
-  --mediumBlue: #1a9ac8;
-  --darkBlue: #237694;
-  --lightPink: #ffafdf;
-  --mediumPink: #ff8bd1;
-  --darkPink: #eb8ec5;
-  --lightRed: #ea555e;
-  --darkRed: #e03354;
-  --darkGreen: #519137;
-  --lightGreen: #6cc249;
-  --lightYellow: #fff260;
-  --darkYellow: #eff1a7;
 }
 
 *,
@@ -43,7 +28,7 @@ html {
   padding: 0;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  /* font-size: 16px; */
+  font-size: 14px;
 }
 
 body {
@@ -53,19 +38,22 @@ body {
   display: flex;
   flex-direction: column;
 
-  height: 100vh;
+  height: 100%;
 }
 
-body.blur section,
-body.bl aside {
+main.blur section{
   filter: blur(0.25rem) brightness(0.7);
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   pointer-events: none;
   user-select: none;
   overflow-y: hidden;
 }
-body.blur section {
-  z-index: -1;
+main.blur section {
+  z-index: 1;
+}
+
+main.blur header {
+  z-index: 1;
 }
 
 a {

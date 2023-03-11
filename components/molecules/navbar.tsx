@@ -3,7 +3,7 @@ import StyleContext from "../context/styleContext";
 import styles from "./navbar.module.css";
 
 const NavBar = () => {
-  const nav_elements = ["about", "work ", "projects", "contact"];
+  const nav_elements = ["about", "work", "projects", "contact"];
   const { menuOpen, setMenuOpen } = useContext(StyleContext);
   const openMenu = () => {
     setMenuOpen((prev) => !prev);

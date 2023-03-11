@@ -50,14 +50,20 @@
 .main__socials li {
   font-size: 1.5rem;
   color: var(--btnClr);
+  display: block;
 }
 
 .main__socials a {
   color: var(--btnClr);
+  display: block;
+  /* transition-delay: 100ms; */
+  transition: transform 200ms ease-in-out;
 }
 
-.main__socials a:hover {
+.main__socials a:hover,
+.main__socials a:focus {
   color: var(--txtClr);
+  transform: translateY(-4px);
 }
 
 .main__socials a:active {
@@ -84,12 +90,14 @@
   }
 
   .main_right {
-    height: 10rem;
-    width: 10rem;
+    height: 8rem;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
   }
 
   .main_right img {
-    width: 5rem;
+    width: 7rem;
   }
 
   .main_left > h1 {
@@ -106,6 +114,6 @@
   }
 
   .main__socials > li {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }

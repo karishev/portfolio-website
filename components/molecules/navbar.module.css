@@ -4,7 +4,7 @@
   /* left: 0; */
   top: 0;
   /* right: 0; */
-  padding: 2rem 10rem;
+  padding: 2rem 12rem;
   color: var(--txtClr);
   display: flex;
   justify-content: space-between;
@@ -25,14 +25,21 @@
 }
 
 .header__contact {
-  background: var(--btnClr);
+  /* background: var(--btnClr); */
+  background: var(--bgClr);
   height: 2rem;
   font-family: "Poppins";
   padding: 0 1rem;
   font-size: 1rem;
-  border: none;
+  border: 1px solid var(--btnClr);
   border-radius: 0.125rem;
-  color: var(--backClr);
+  color: var(--btnClr);
+}
+
+.header button:hover {
+  background: var(--btnClr);
+  color: var(--bgClr);
+  cursor: pointer;
 }
 
 .hamburger {
