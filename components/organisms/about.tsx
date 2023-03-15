@@ -11,15 +11,35 @@ export const About = () => {
             width="200px"
             src="cheena_pixel.png"
           ></img>
-          <p>
-            Hello! My name is Shyngys and I enjoy creating things that live on
-            the internet. I am 20 years old Junior at New York University Abu
-            Dhabi, majoring in Computer Science and Interactive Media. My main
-            focus these days is building accessible, inclusive products and
-            digital experiences for a variety of clients. I enjoy playing
-            volleyball and chess. In my free time, I like to play video games or
-            workout. Technology stack:
-          </p>
+          <div>
+            <p>
+              I am a Junior at New York University Abu Dhabi, majoring in
+              Computer Science and Interactive Media.
+              <br />
+              <br />
+              As a software developer, I enjoy building innovative solutions to
+              complex problems using my skills and expertise. I am passionate
+              about technology and constantly seek to improve my knowledge and
+              skills in various programming languages and frameworks. My love
+              for coding drives me to constantly experiment and explore new
+              technologies to stay ahead of the curve.
+              <br />
+              <br />
+              Outside of the scope of coding, I enjoy playing volleyball,
+              football, tennis, and chess.
+              <br />
+              <br />
+              Technology stack:
+            </p>
+            <ul className={styles.skills}>
+              <li>JavaScript</li>
+              <li>TypeScript</li>
+              <li>ReactJS</li>
+              <li>Next.js</li>
+              <li>Node.js</li>
+              <li>VueJS</li>
+            </ul>
+          </div>
         </div>
         <h2>{"</about>"}</h2>
       </div>

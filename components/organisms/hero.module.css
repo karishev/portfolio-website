@@ -2,7 +2,7 @@
 
 .main {
   width: 100%;
-  height: calc(100vh - 3rem);
+  height: calc(100vh - 2rem);
   display: grid;
   place-items: center;
 }
@@ -94,7 +94,10 @@
     justify-content: center;
     gap: 3rem;
     width: 100%;
-    transform: translateY(-4rem);
+    /* transform: translateY(-4rem); */
+  }
+  .main {
+    height: calc(100vh);
   }
 
   .main_right {

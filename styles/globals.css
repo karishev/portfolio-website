@@ -82,7 +82,7 @@ a:hover {
 
 @media screen and (max-width: 65rem) {
   section {
-    padding: 8rem 2rem 0;
+    padding: 2rem;
   }
 }
 
@@ -109,41 +109,4 @@ a:hover {
   padding-bottom: 1rem;
 }
 
-#about {
-  color: var(--txtClr);
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding-top: 4rem;
-  margin-bottom: 2rem;
-}
 
-#about > h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--btnClr);
-}
-
-.info__wrapper {
-  display: flex;
-  gap: 2rem;
-}
-
-#about .about_me {
-  background: var(--backClr);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  width: 50%;
-}
-
-@media screen and (max-width: 45rem) {
-  .info__wrapper {
-    flex-direction: column;
-  }
-
-  #about .about_me {
-    width: 100%;
-  }
-}
