@@ -4,12 +4,12 @@
   /* left: 0; */
   top: 0;
   /* right: 0; */
-  padding: 2rem 12rem;
+  padding: 2rem 14rem;
   color: var(--txtClr);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   background: var(--bgClr);
 }
 
@@ -149,11 +149,11 @@
   transform: translateX(0vw);
 }
 
-@media screen and (max-width: 70rem) {
+/* @media screen and (max-width: 70rem) {
   .header__menu {
     gap: 3rem;
   }
-}
+} */
 
 @media screen and (min-width: 45rem) {
   .header__menumobile {

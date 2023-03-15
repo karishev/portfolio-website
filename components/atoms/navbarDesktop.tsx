@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styles from "../molecules/navbar.module.css";
-import StyleContext from "./styleContext";
+import StyleContext from "../context/styleContext";
 
 export interface INavbar {
   elements: string[];

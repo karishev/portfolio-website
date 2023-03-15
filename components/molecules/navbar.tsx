@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { NavbarDesktop } from "../context/navbarDesktop";
-import { NavbarMobile } from "../context/navbarMobile";
+import { NavbarDesktop } from "../atoms/navbarDesktop";
+import { NavbarMobile } from "../atoms/navbarMobile";
 import StyleContext from "../context/styleContext";
 import styles from "./navbar.module.css";
 
