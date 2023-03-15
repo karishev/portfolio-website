@@ -22,7 +22,10 @@ export const NavbarDesktop = ({ elements }: INavbar) => {
           );
         })}
       </ul>
-      <button className={styles.header__contact}>resume</button>
+
+      <a href="ShyngysKarishev_CV.pdf">
+        <button className={styles.header__contact}>resume</button>
+      </a>
       <div
         className={
           menuOpen

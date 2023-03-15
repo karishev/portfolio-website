@@ -3,7 +3,7 @@ import styles from "../molecules/navbar.module.css";
 import { INavbar } from "./navbarDesktop";
 import StyleContext from "../context/styleContext";
 
-export const NavbarMobile = ({elements} : INavbar) => {
+export const NavbarMobile = ({ elements }: INavbar) => {
   const { menuOpen, setMenuOpen } = useContext(StyleContext);
   return (
     <aside
@@ -21,7 +21,9 @@ export const NavbarMobile = ({elements} : INavbar) => {
             </li>
           );
         })}
-        <button>resume</button>
+        <a href="ShyngysKarishev_CV.pdf">
+          <button>resume</button>
+        </a>
       </ul>
     </aside>
   );

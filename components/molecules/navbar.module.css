@@ -24,21 +24,30 @@
   gap: 3rem;
 }
 
-.header__contact {
+.header__contact,
+.header button {
   /* background: var(--btnClr); */
-  background: var(--bgClr);
+  background: var(--btnClr);
   height: 2rem;
   font-family: "Poppins";
   padding: 0 1rem;
   font-size: 1rem;
   border: 1px solid var(--btnClr);
   border-radius: 0.125rem;
-  color: var(--btnClr);
+  color: var(--bgClr);
 }
 
-.header button:hover {
-  background: var(--btnClr);
+/* .header button > a {
   color: var(--bgClr);
+}
+
+.header button > a:hover {
+  color: var(--btnClr);
+} */
+
+.header button:hover {
+  background: var(--bgClr);
+  color: var(--btnClr);
   cursor: pointer;
 }
 
@@ -79,8 +88,6 @@
 .icon_one.active .hamburger_one {
   background: rgba(0, 0, 0, 0);
 }
-
-
 
 .icon_one.active .hamburger_one:before {
   top: 0;
