@@ -8,7 +8,6 @@ export const About = () => {
         <div className={styles.info}>
           <img
             alt="Pixeled portrait of Shyngys Karishev"
-            width="200px"
             src="cheena_pixel.png"
           ></img>
           <div>

@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
     <header className={styles.header}>
       <h1>
-        <a href="#">kvrishev</a>
+        <a aria-label="Hero section" href="#">kvrishev</a>
       </h1>
       <NavbarDesktop elements={nav_elements} />
       <NavbarMobile elements={nav_elements} />

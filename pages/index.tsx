@@ -12,7 +12,10 @@ export default function Home() {
     <>
       <Head>
         <title>Shyngys Karishev</title>
-        <meta name="description" content="Portfolio Website" />
+        <meta
+          name="description"
+          content="Shyngys Karishev's developer portfolio website showcases his skills, projects, and experience as a software developer. It features his background, areas of expertise, and a collection of his projects, highlighting his creativity and problem-solving abilities."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

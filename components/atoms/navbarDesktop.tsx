@@ -17,13 +17,15 @@ export const NavbarDesktop = ({ elements }: INavbar) => {
         {elements.map((name, index) => {
           return (
             <li key={index}>
-              <a href={"#" + name}>{"<" + name + ">"}</a>
+              <a aria-label={name} href={"#" + name}>
+                {"<" + name + ">"}
+              </a>
             </li>
           );
         })}
       </ul>
 
-      <a href="ShyngysKarishev_CV.pdf">
+      <a aria-label="Shyngys Karishev Resume" href="ShyngysKarishev_CV.pdf">
         <button className={styles.header__contact}>resume</button>
       </a>
       <div
