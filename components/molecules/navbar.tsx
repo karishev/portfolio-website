@@ -1,17 +1,22 @@
 import { useContext } from "react";
 import { NavbarDesktop } from "../atoms/navbarDesktop";
 import { NavbarMobile } from "../atoms/navbarMobile";
-import StyleContext from "../context/styleContext";
 import styles from "./navbar.module.css";
+import ScrollContext from "../context/scrollContext";
 
-const NavBar = () => {
+interface INavBar {
+  // handleClick: (target: string) => void;
+}
+
+const NavBar = ({} : INavBar) => {
   const nav_elements = ["about", "work", "projects", "contact"];
-  const { menuOpen, setMenuOpen } = useContext(StyleContext);
+
+  const {handleClick} = useContext(ScrollContext)
 
   return (
     <header className={styles.header}>
       <h1>
-        <a aria-label="Hero section" href="#">kvrishev</a>
+        <a onClick={() => handleClick('hero')} aria-label="Hero section">kvrishev</a>
       </h1>
       <NavbarDesktop elements={nav_elements} />
       <NavbarMobile elements={nav_elements} />

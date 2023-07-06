@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  
   return (
     <StyleContext.Provider value={{ menuOpen, setMenuOpen }}>
       <Component {...pageProps} />

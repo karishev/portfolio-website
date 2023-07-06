@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styles from "../molecules/navbar.module.css";
 import StyleContext from "../context/styleContext";
+import ScrollContext from "../context/scrollContext";
 
 export interface INavbar {
   elements: string[];
@@ -8,6 +9,7 @@ export interface INavbar {
 
 export const NavbarDesktop = ({ elements }: INavbar) => {
   const { menuOpen, setMenuOpen } = useContext(StyleContext);
+  const {handleClick} = useContext(ScrollContext)
   const openMenu = () => {
     setMenuOpen((prev) => !prev);
   };
@@ -17,7 +19,7 @@ export const NavbarDesktop = ({ elements }: INavbar) => {
         {elements.map((name, index) => {
           return (
             <li key={index}>
-              <a aria-label={name} href={"#" + name}>
+              <a aria-label={name} onClick={() => handleClick(name)}>
                 {"<" + name + ">"}
               </a>
             </li>

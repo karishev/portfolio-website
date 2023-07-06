@@ -1,8 +1,14 @@
+import { RefObject, forwardRef, useImperativeHandle, useRef } from "react";
 import styles from "./about.module.css";
 
-export const About = () => {
+export const About = forwardRef((props, ref) => {
+
+  const aboutRef = useRef<HTMLElement>(null);
+
+  // Expose the bannerRef to the parent component
+  useImperativeHandle(ref, () => aboutRef.current);
   return (
-    <section id="about" className={styles.about}>
+    <section ref={aboutRef} className={styles.about}>
       <div className={styles.container}>
         <h2>{"<about>"}</h2>
         <div className={styles.info}>
@@ -44,4 +50,4 @@ export const About = () => {
       </div>
     </section>
   );
-};
+});

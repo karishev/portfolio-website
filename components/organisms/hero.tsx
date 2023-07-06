@@ -1,6 +1,13 @@
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import styles from "./hero.module.css";
 
-export const Hero = () => {
+export const Hero = forwardRef((props, ref) => {
+  // console.log(ref)
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Expose the bannerRef to the parent component
+  useImperativeHandle(ref, () => heroRef.current);
+
   const socials = [
     [
       "instagram",
@@ -20,7 +27,7 @@ export const Hero = () => {
     ],
   ];
   return (
-    <section id="#" className={styles.main}>
+    <section ref={heroRef} className={styles.main}>
       <div className={styles.container}>
         <div className={styles.main_left}>
           <h1>Hi, I am Shyngys Karishev</h1>
@@ -44,4 +51,4 @@ export const Hero = () => {
       </div>
     </section>
   );
-};
+});
