@@ -1,0 +1,137 @@
+.widget {
+  display: flex;
+  flex-direction: row;
+  gap: 1.25rem;
+  /* background: var(--backClr); */
+  width: 100%;
+  min-height: 23rem;
+}
+
+.list {
+  /* display: flex;
+  width: 100%;
+  flex-direction: column; */
+
+  position: relative;
+  z-index: 3;
+  width: max-content;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+.expLink {
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
+  height: 3.5rem;
+  padding: 0px 1.5rem 0.2rem;
+  border-left: 2px solid var(--btnClr);
+  background-color: transparent;
+  color: var(--txtClr);
+  font-size: 1rem;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.expLink:hover {
+  color: var(--cardClr);
+}
+
+.exp_info {
+  /* display: flex;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  flex-direction: column;
+  row-gap: 0.75rem; */
+
+  position: relative;
+  width: 100%;
+  margin-left: 1.5rem;
+}
+
+.cont {
+  width: 100%;
+  height: auto;
+  padding: 1rem 0.5rem;
+}
+
+.h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.p {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.75rem;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+.point {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  column-gap: 0.5rem;
+}
+
+.point_item {
+  left: 1.25rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  margin-top: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+@media screen and (max-width: 45rem) {
+  .list {
+    display: flex;
+    flex-direction: row;
+    /* width: calc(100% + 100px); */
+    overflow-x: auto;
+  }
+  .expLink {
+    border-bottom-width: 0;
+  }
+  .exp_info {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+  }
+  .widget {
+    flex-direction: column;
+    gap: 0;
+  }
+  .expLink {
+    border-left: none;
+    border-bottom: 2px solid var(--btnClr);
+    padding: 0px 1rem 0.2rem;
+  }
+}
+
+.activeLink {
+  color: var(--cardClr);
+  border-color: var(--cardClr);
+}

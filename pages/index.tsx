@@ -5,6 +5,8 @@ import StyleContext from "@/components/context/styleContext";
 import Hero from "@/components/organisms/hero";
 import About from "@/components/organisms/about";
 import ScrollContext from "@/components/context/scrollContext";
+import Experience from "@/components/organisms/experience";
+import Projects from "@/components/organisms/projects";
 
 export default function Home() {
   const { menuOpen } = useContext(StyleContext);
@@ -23,7 +25,7 @@ export default function Home() {
       case "about":
         ref = aboutRef;
         break;
-      case "experience":
+      case "work":
         ref = expRef;
         break;
       case "projects":
@@ -53,6 +55,8 @@ export default function Home() {
           <NavBar />
           <Hero ref={heroRef} />
           <About ref={aboutRef} />
+          <Experience ref={expRef} />
+          <Projects ref={projectsRef} />
         </main>
       </ScrollContext.Provider>
     </>

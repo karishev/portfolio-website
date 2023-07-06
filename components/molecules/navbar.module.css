@@ -1,14 +1,12 @@
 .header {
   position: fixed;
-  /* left: 10rem; */
-  /* left: 0; */
   top: 0;
-  /* right: 0; */
   padding: 2rem 14rem;
   color: var(--txtClr);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
   width: 100%;
   background: var(--bgClr);
 }
