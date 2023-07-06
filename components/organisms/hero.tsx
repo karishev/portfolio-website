@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import styles from "./hero.module.css";
 
-export const Hero = forwardRef((props, ref) => {
+const Hero = forwardRef((props, ref) => {
   // console.log(ref)
   const heroRef = useRef<HTMLElement>(null);
 
@@ -52,3 +52,7 @@ export const Hero = forwardRef((props, ref) => {
     </section>
   );
 });
+
+Hero.displayName = "Hero";
+
+export default Hero

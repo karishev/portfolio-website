@@ -1,14 +1,13 @@
 import Head from "next/head";
-import Image from "next/image";
 import NavBar from "@/components/molecules/navbar";
 import { useContext, useRef } from "react";
 import StyleContext from "@/components/context/styleContext";
-import { Hero } from "@/components/organisms/hero";
-import { About } from "@/components/organisms/about";
+import Hero from "@/components/organisms/hero";
+import About from "@/components/organisms/about";
 import ScrollContext from "@/components/context/scrollContext";
 
 export default function Home() {
-  const { menuOpen, setMenuOpen } = useContext(StyleContext);
+  const { menuOpen } = useContext(StyleContext);
   const heroRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
   const expRef = useRef<HTMLElement>(null);

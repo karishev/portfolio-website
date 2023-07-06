@@ -1,8 +1,7 @@
-import { RefObject, forwardRef, useImperativeHandle, useRef } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import styles from "./about.module.css";
 
-export const About = forwardRef((props, ref) => {
-
+const About = forwardRef((props, ref) => {
   const aboutRef = useRef<HTMLElement>(null);
 
   // Expose the bannerRef to the parent component
@@ -51,3 +50,7 @@ export const About = forwardRef((props, ref) => {
     </section>
   );
 });
+
+About.displayName = "About";
+
+export default About;
