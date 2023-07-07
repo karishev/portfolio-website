@@ -5,8 +5,6 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  /* padding-left: 0;
-  padding-right: 0; */
   padding-top: 8rem;
   padding-bottom: 8rem;
   flex-direction: column;
@@ -31,8 +29,8 @@
 }
 
 @media screen and (max-width: 45rem) {
-  .experience {
+  /* .experience { */
     /* height: calc(100vh); */
-    padding-top: 0rem;
-  }
+    /* padding-top: 0rem; */
+  /* } */
 }

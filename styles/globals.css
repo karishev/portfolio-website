@@ -61,7 +61,7 @@ main.blur section {
 }
 
 main.blur header {
-  z-index: 1;
+  z-index: 5;
 }
 
 a {

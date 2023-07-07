@@ -40,16 +40,16 @@ export const experience: ExperienceI[] = [
       "Worked in an agile environment with weekly stand-ups to design the user UX journey",
     ],
   },
-  {
-    id: 4,
-    position: "Frontend Developer",
-    company: "ASRM",
-    period: "Jun 2022 - Aug 2022",
-    description: [
-      "Maintained, developed, and designed the public website using Vue 2, Vuex, HTML5, and CSS",
-      "Implemented the mobile responsiveness via flexbox strategy, developed the registration process, and designed the UX user journey",
-      "Introduced the practice of documenting code and processes per project, which made on-boarding of new developers faster",
-      "Hosted the application on Amazon AWS",
-    ],
-  },
+  // {
+  //   id: 4,
+  //   position: "Frontend Developer",
+  //   company: "ASRM",
+  //   period: "Jun 2022 - Aug 2022",
+  //   description: [
+  //     "Maintained, developed, and designed the public website using Vue 2, Vuex, HTML5, and CSS",
+  //     "Implemented the mobile responsiveness via flexbox strategy, developed the registration process, and designed the UX user journey",
+  //     "Introduced the practice of documenting code and processes per project, which made on-boarding of new developers faster",
+  //     "Hosted the application on Amazon AWS",
+  //   ],
+  // },
 ];
