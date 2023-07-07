@@ -41,7 +41,7 @@ const About = forwardRef((props, ref) => {
               <li>ReactJS</li>
               <li>Next.js</li>
               <li>Node.js</li>
-              <li>VueJS</li>
+              <li>ReactQuery</li>
             </ul>
           </div>
         </div>

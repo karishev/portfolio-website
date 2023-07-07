@@ -13,7 +13,7 @@
   flex-direction: column; */
 
   position: relative;
-  z-index: 3;
+  z-index: 0;
   width: max-content;
   padding: 0px;
   margin: 0px;
@@ -32,7 +32,7 @@
   height: 3.5rem;
   padding: 0px 1.5rem 0.2rem;
   border-left: 2px solid var(--btnClr);
-  background-color: transparent;
+  /* background-color: var(--backClr); */
   color: var(--txtClr);
   font-size: 1rem;
   text-align: left;
@@ -42,6 +42,7 @@
 
 .expLink:hover {
   color: var(--cardClr);
+  background-color: var(--backClr);
 }
 
 .exp_info {
@@ -54,6 +55,20 @@
   position: relative;
   width: 100%;
   margin-left: 1.5rem;
+}
+
+.animation {
+  animation: fade 2s linear;
+}
+
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .cont {
@@ -132,6 +147,7 @@
 }
 
 .activeLink {
-  color: var(--cardClr);
+  color: var(--btnClr);
   border-color: var(--cardClr);
+  /* background-color: var(); */
 }

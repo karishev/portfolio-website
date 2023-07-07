@@ -13,9 +13,12 @@ interface Job {
 
 const ExpWidget = () => {
   const [activeJob, setActiveJob] = useState<Job>(experience[0]);
+  const [animate, setAnimate] = useState<Boolean>(false)
 
   const toggleJob = (job: Job) => {
     setActiveJob(job);
+    setAnimate(true);
+    setTimeout(() => setAnimate(false), 600);
   };
 
   return (
@@ -35,7 +38,7 @@ const ExpWidget = () => {
           </li>
         ))}
       </ul>
-      <div className={styles.exp_info}>
+      <div className={`${styles.exp_info}  ${animate ? styles.animation : ''}`}>
         <div className={styles.cont}>
           <h1 className={styles.h1}>
             {`${activeJob.position} `}

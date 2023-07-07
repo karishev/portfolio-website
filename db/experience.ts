@@ -16,7 +16,7 @@ export const experience: ExperienceI[] = [
       "Contributed to the overhaul of legacy code and documentation, effectively removing deprecated dependencies and improving maintainability",
       "Assisted in the transition to a monorepository using Turborepo and pnpm, significantly enhancing project scalability and development speed",
       "Participated in the integration of five projects into the monorepo and the creation of a shared packages folder, promoting code reusability across projects",
-      "Worked on the development of new features and debugging of existing ones, thereby enhancing application reliability and user experience",
+      "Worked on the development of new features and debugging of existing ones using Express, React-Query, and React",
     ],
   },
   {
