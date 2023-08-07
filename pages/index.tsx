@@ -1,12 +1,14 @@
 import Head from "next/head";
-import NavBar from "@/components/molecules/navbar";
-import { useContext, useRef } from "react";
+import { useCallback, useContext, useRef } from "react";
 import StyleContext from "@/components/context/styleContext";
-import Hero from "@/components/organisms/hero";
-import About from "@/components/organisms/about";
 import ScrollContext from "@/components/context/scrollContext";
-import Experience from "@/components/organisms/experience";
-import Projects from "@/components/organisms/projects";
+import dynamic from "next/dynamic"
+
+const NavBar = dynamic(() => import("@/components/molecules/navbar"));
+const Hero = dynamic(() => import("@/components/organisms/hero"));
+const About = dynamic(() => import("@/components/organisms/about"));
+const Experience = dynamic(() => import("@/components/organisms/experience"));
+const Projects = dynamic(() => import("@/components/organisms/projects"));
 
 export default function Home() {
   const { menuOpen } = useContext(StyleContext);
@@ -15,7 +17,7 @@ export default function Home() {
   const expRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
 
-  const handleClick = (target: string) => {
+  const handleClick = useCallback((target: string) => {
     let ref;
 
     switch (target) {
@@ -25,7 +27,7 @@ export default function Home() {
       case "about":
         ref = aboutRef;
         break;
-      case "work":
+      case "experience":
         ref = expRef;
         break;
       case "projects":
@@ -38,7 +40,8 @@ export default function Home() {
     if (ref) {
       ref.current?.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, []);
+  
   return (
     <>
       <Head>
@@ -50,7 +53,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ScrollContext.Provider value={{handleClick}}>
+      <ScrollContext.Provider value={{ handleClick }}>
         <main className={menuOpen ? "blur" : ""}>
           <NavBar />
           <Hero ref={heroRef} />

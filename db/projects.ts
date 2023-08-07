@@ -10,7 +10,7 @@ export interface ProjectI {
 
 export const projects: ProjectI[] = [
   {
-    id: 2,
+    id: 1,
     title: "ASRM (Team Project)",
     imgUrl: "asrm.png",
     description: `
@@ -23,7 +23,7 @@ export const projects: ProjectI[] = [
     ghLink: "https://github.com/ZhomartZhetpisbekov/ASRM-website",
   },
   {
-    id: 3,
+    id: 2,
     title: "Not Parkour",
     imgUrl: "notparkour.png",
     description: `
@@ -35,7 +35,7 @@ export const projects: ProjectI[] = [
       ability. 
     `,
     stack: ["Node.js", "Express", "p5.js", "Socket.io"],
-    projectLink: "",
+    projectLink: "https://not-parkour.glitch.me/",
     ghLink: "https://github.com/karishev/not-parkour",
   },
 ];

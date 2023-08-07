@@ -1,11 +1,19 @@
 import { ProjectI } from "@/db/projects";
 import styles from "./project.module.css";
+import Image from 'next/image';
 
 interface IProject extends ProjectI {
   side: string;
 }
 
-const Project = ({ imgUrl, side, title, description, stack }: IProject) => {
+const Project = ({
+  imgUrl,
+  side,
+  title,
+  description,
+  stack,
+  projectLink,
+}: IProject) => {
   return (
     <li className={styles.project}>
       <a
@@ -14,11 +22,16 @@ const Project = ({ imgUrl, side, title, description, stack }: IProject) => {
         }`}
       >
         <div className={styles.image_cont}>
-          <img src={`./${imgUrl}`}></img>
+        <Image
+            src={`/${imgUrl}`}
+            alt={`${title} image`}
+            layout="fill" // This will make the image take the full width and height of the parent div
+            objectFit="cover" // This will scale the image nicely to the parent div
+          ></Image>
         </div>
       </a>
       <div className={`${styles.text} ${side === "right" ? styles.right : ""}`}>
-        <a target="_blank" href="https://boku-stream.vercel.app/">
+        <a target="_blank" href={projectLink}>
           <h3 className={styles.name}>{title}</h3>
         </a>
         <p className={styles.description}>{description}</p>
@@ -29,11 +42,7 @@ const Project = ({ imgUrl, side, title, description, stack }: IProject) => {
             <li key={ind}>{element}</li>
           ))}
         </ul>
-        <a
-          className=""
-          target="_blank"
-          href="https://github.com/ZhomartZhetpisbekov/boku_stream"
-        >
+        <a className="" target="_blank" href={projectLink}>
           <svg
             aria-hidden="true"
             focusable="false"

@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import styles from "./about.module.css";
 
-const About = forwardRef((props, ref) => {
+const About = forwardRef((_props, ref) => {
   const aboutRef = useRef<HTMLElement>(null);
 
   // Expose the bannerRef to the parent component
@@ -38,7 +38,7 @@ const About = forwardRef((props, ref) => {
             <ul className={styles.skills}>
               <li>JavaScript</li>
               <li>TypeScript</li>
-              <li>ReactJS</li>
+              <li>React.js</li>
               <li>Next.js</li>
               <li>Node.js</li>
               <li>ReactQuery</li>
