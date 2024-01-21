@@ -8,10 +8,21 @@ interface ExperienceI {
 
 export const experience: ExperienceI[] = [
   {
+    id: 0,
+    position: "Research Assistant",
+    company: "NYU Abu Dhabi",
+    period: "Sep 2023 - Present",
+    description: [
+      "Led the frontend development and integration of a dynamic web tool for Conjoint Research, enabling researchers to design and export intricate conjoint surveys for platforms like Qualtrics.",
+      "Spearheaded iterative UI development and backend connectivity for a survey design tool, facilitating weighted randomization and data visualization in conjoint analysis",
+      "Presented and conducted user testing at the MENA and Asian Political Methodology Conference 2024.",
+    ],
+  },
+  {
     id: 1,
     position: "Software Engineer Intern",
     company: "Yandex",
-    period: "June 2023 - Present",
+    period: "June 2023 - Sep 2023",
     description: [
       "Decreased code-related issues by 20% through overhauling legacy code and documentation, effectively removing deprecated dependencies and improving maintainability.",
       "Enhanced project scalability and sped up development by assisting in the transition to a monorepository using Turborepo and pnpm, which resulted in fewer bugs and made the project more manageable.",
