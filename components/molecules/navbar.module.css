@@ -1,17 +1,24 @@
 .header {
   position: fixed;
   top: 0;
-  padding: 2rem 14rem;
+  padding: 2rem 0;
   color: var(--txtClr);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   z-index: 5;
-  width: 100%;
+  width: 100vw;
   background: var(--bgClr);
 }
 
-.header > h1 {
+.container {
+  width: 60rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container > h1 {
   font-size: 1rem;
   font-weight: normal;
 }
@@ -175,6 +182,9 @@
 @media screen and (max-width: 65rem) {
   .header {
     padding: 2rem;
+  }
+  .container {
+    width: 100%;
   }
 }
 

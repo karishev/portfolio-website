@@ -91,7 +91,7 @@
   z-index: 1;
   padding: 2rem;
   border-radius: 0.25rem;
-  background-color: rgb(227, 251, 209);
+  background-color: var(--backClr);
   /* color: var(--light-slate); */
   /* font-size: var(--fz-lg); */
 }

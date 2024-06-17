@@ -8,19 +8,23 @@ interface INavBar {
   // handleClick: (target: string) => void;
 }
 
-const NavBar = ({} : INavBar) => {
+const NavBar = ({}: INavBar) => {
   // const nav_elements = ["about", "experience", "projects", "contact"];
-  const nav_elements = ["about", "experience", "projects"];
+  const nav_elements = ["experience", "projects"];
 
-  const {handleClick} = useContext(ScrollContext)
+  const { handleClick } = useContext(ScrollContext);
 
   return (
     <header className={styles.header}>
-      <h1>
-        <a onClick={() => handleClick('hero')} aria-label="Hero section">kvrishev</a>
-      </h1>
-      <NavbarDesktop elements={nav_elements} />
-      <NavbarMobile elements={nav_elements} />
+      <div className={styles.container}>
+        <h1>
+          <a onClick={() => handleClick("hero")} aria-label="Hero section">
+            kvrishev
+          </a>
+        </h1>
+        <NavbarDesktop elements={nav_elements} />
+        <NavbarMobile elements={nav_elements} />
+      </div>
     </header>
   );
 };

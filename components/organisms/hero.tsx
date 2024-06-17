@@ -8,47 +8,54 @@ const Hero = forwardRef((props, ref) => {
   // Expose the bannerRef to the parent component
   useImperativeHandle(ref, () => heroRef.current);
 
-  const socials = [
-    [
-      "instagram",
-      "https://www.instagram.com/kvrishev/",
-      "Shyngys Karishev Instagram",
-    ],
-    [
-      "linkedin-alt",
-      "https://www.linkedin.com/in/shyngys-karishev/",
-      "Shyngys Karishev LinkedIn",
-    ],
-    ["telegram-alt", "https://t.me/karishev", "Shyngys Karishev Telegram"],
-    [
-      "github-alt",
-      "https://www.github.com/karishev/",
-      "Shyngys Karishev Github",
-    ],
-    ["twitter-alt", "https://x.com/_karishev", "Shyngys Karishev Twitter"],
-  ];
   return (
     <section ref={heroRef} className={styles.main}>
       <div className={styles.container}>
         <div className={styles.main_left}>
-          <h1>Hi, I am Shyngys Karishev</h1>
-          <div className={styles.line}></div>
-          <p>Front End Developer / Software Developer</p>
-          <ul className={styles.main__socials}>
-            {socials.map((name, index) => {
-              return (
-                <li key={index}>
-                  <a target={"_blank"} aria-label={name[2]} href={name[1]}>
-                    <i className={`uil uil-${name[0]}`}></i>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+          <h1>Shyngys Karishev</h1>
+          <p></p>
         </div>
-        <div className={styles.main_right}>
+        <div className={styles.line}></div>
+        <div className={styles.containerBio}>
+          {/* <h2>{"<about>"}</h2> */}
+          <div className={styles.info}>
+            <div>
+              <p>
+                I am a Software Developer and a recent graduate of New York
+                University Abu Dhabi, majoring in Computer Science and
+                Interactive Media.
+                <br />
+                <br />
+                As a software developer, I enjoy building innovative solutions
+                to complex problems using my skills and expertise. I am
+                passionate about technology and constantly seek to improve my
+                knowledge and skills in various programming languages and
+                frameworks. My love for coding drives me to constantly
+                experiment and explore new technologies to stay ahead of the
+                curve.
+                <br />
+                <br />
+                Outside of the scope of coding, I enjoy playing volleyball,
+                football, tennis, and chess.
+                <br />
+                <br />
+                Technology stack:
+              </p>
+              <ul className={styles.skills}>
+                <li>JavaScript</li>
+                <li>TypeScript</li>
+                <li>React.js</li>
+                <li>Next.js</li>
+                <li>Node.js</li>
+                <li>ReactQuery</li>
+              </ul>
+            </div>
+          </div>
+          {/* <h2>{"</about>"}</h2> */}
+        </div>
+        {/* <div className={styles.main_right}>
           <img width="9rem" alt="Pixelated Shyngys waving" src="./cheena.gif" />
-        </div>
+        </div> */}
       </div>
     </section>
   );
