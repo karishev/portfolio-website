@@ -19,36 +19,49 @@ const Hero = forwardRef((props, ref) => {
         <div className={styles.containerBio}>
           {/* <h2>{"<about>"}</h2> */}
           <div className={styles.info}>
-            <div>
+            <div className={styles.info_wrapper}>
               <p>
-                I am a Software Developer and a recent graduate of New York
-                University Abu Dhabi, majoring in Computer Science and
-                Interactive Media.
-                <br />
-                <br />
-                As a software developer, I enjoy building innovative solutions
-                to complex problems using my skills and expertise. I am
-                passionate about technology and constantly seek to improve my
-                knowledge and skills in various programming languages and
-                frameworks. My love for coding drives me to constantly
-                experiment and explore new technologies to stay ahead of the
-                curve.
-                <br />
-                <br />
-                Outside of the scope of coding, I enjoy playing volleyball,
-                football, tennis, and chess.
-                <br />
-                <br />
-                Technology stack:
+                I am a software developer that enjoys building stuff. Right now
+                I am working on my personal project at{" "}
+                <span
+                  className={styles.highlight}
+                  onClick={() => {
+                    window.open("https://buildspace.so", "_blank");
+                  }}
+                >
+                  @buildspace
+                </span>{" "}
+                with{" "}
+                <span
+                  className={styles.highlight}
+                  onClick={() => {
+                    window.open("https://twitter.com/zhetpisbekov", "_blank");
+                  }}
+                >
+                  @zhetpisbekov.
+                </span>{" "}
+                Part of{" "}
+                <span
+                  className={styles.highlight}
+                  onClick={() => {
+                    window.open("https://x.com/_nightsweekends", "_blank");
+                  }}
+                >
+                  @n&w
+                </span>{" "}
+                s5.
               </p>
-              <ul className={styles.skills}>
-                <li>JavaScript</li>
-                <li>TypeScript</li>
-                <li>React.js</li>
-                <li>Next.js</li>
-                <li>Node.js</li>
-                <li>ReactQuery</li>
-              </ul>
+              <div className={styles.skills_wrapper}>
+                <p>Technology stack:</p>
+                <ul className={styles.skills}>
+                  <li>JavaScript</li>
+                  <li>TypeScript</li>
+                  <li>React.js</li>
+                  <li>Next.js</li>
+                  <li>Node.js</li>
+                  <li>ReactQuery</li>
+                </ul>
+              </div>
             </div>
           </div>
           {/* <h2>{"</about>"}</h2> */}

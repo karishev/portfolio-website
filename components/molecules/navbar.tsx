@@ -10,7 +10,7 @@ interface INavBar {
 
 const NavBar = ({}: INavBar) => {
   // const nav_elements = ["about", "experience", "projects", "contact"];
-  const nav_elements = ["experience", "projects"];
+  const nav_elements = ["about", "experience", "projects"];
 
   const { handleClick } = useContext(ScrollContext);
 

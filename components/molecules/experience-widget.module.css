@@ -41,7 +41,7 @@
 }
 
 .expLink:hover {
-  color: var(--cardClr);
+  color: var(--txtClr);
   background-color: var(--backClr);
 }
 

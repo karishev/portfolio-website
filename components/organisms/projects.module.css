@@ -17,7 +17,7 @@
 }
 
 .container {
-  width: 70%;
+  width: 60rem;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
@@ -39,8 +39,8 @@
 
 @media screen and (max-width: 45rem) {
   /* .projects { */
-    /* height: calc(100vh); */
-    /* padding-top: 0rem; */
+  /* height: calc(100vh); */
+  /* padding-top: 0rem; */
   /* } */
   .container {
     width: 100%;

@@ -4,7 +4,7 @@ import StyleContext from "@/components/context/styleContext";
 import ScrollContext from "@/components/context/scrollContext";
 import NavBar from "@/components/molecules/navbar";
 import Hero from "@/components/organisms/hero";
-
+import About from "@/components/organisms/about";
 import Experience from "@/components/organisms/experience";
 import Projects from "@/components/organisms/projects";
 
@@ -32,6 +32,7 @@ export default function Home() {
 
   const expRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
 
   const handleClick = useCallback((target: string) => {
     let ref;
@@ -45,6 +46,9 @@ export default function Home() {
         break;
       case "projects":
         ref = projectsRef;
+        break;
+      case "about":
+        ref = aboutRef;
         break;
       default:
         break;
@@ -89,6 +93,11 @@ export default function Home() {
       <ScrollContext.Provider value={{ handleClick }}>
         <main className={menuOpen ? "blur" : ""}>
           <NavBar />
+
+          <Hero ref={heroRef} />
+          <About ref={aboutRef} />
+          <Experience ref={expRef} />
+          <Projects ref={projectsRef} />
           <div className="left">
             <ul className={"main__socials"}>
               {socials.map((name, index) => {
@@ -102,10 +111,6 @@ export default function Home() {
               })}
             </ul>
           </div>
-          <Hero ref={heroRef} />
-
-          <Experience ref={expRef} />
-          <Projects ref={projectsRef} />
         </main>
       </ScrollContext.Provider>
     </>

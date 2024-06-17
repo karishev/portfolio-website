@@ -70,7 +70,6 @@ body {
   flex-direction: column;
   overflow-x: hidden;
   height: 100%;
-  margin-top: 10rem;
 }
 
 section {
@@ -199,4 +198,25 @@ a {
 
 .main__socials i:active {
   color: var(--btnClr) !important;
+}
+
+@media screen and (max-width: 65rem) {
+  .left {
+    position: relative;
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+  .main__socials {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  .main__socials li {
+    font-size: 2rem;
+    /* color: var(--txtClr); */
+    display: block;
+  }
 }
