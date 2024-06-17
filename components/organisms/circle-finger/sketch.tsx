@@ -9,7 +9,7 @@ import {
   angleDifference,
 } from "./utils";
 
-const pencilSound = new Audio("/pencil.mp3");
+// const pencilSound = new Audio("/pencil.mp3");
 
 const Sketch = () => {
   const videoElement = useRef<HTMLVideoElement>(null);
@@ -139,7 +139,7 @@ const Sketch = () => {
     if (isCircleComplete(drawingPoints, centerPoint)) return;
 
     drawingPoints.push(currentPoint);
-    pencilSound.play();
+    // pencilSound.play();
 
     if (isCircleComplete(drawingPoints, centerPoint)) return;
 
@@ -223,8 +223,8 @@ const Sketch = () => {
 
     if (scoreElement.current && progress != total / count) {
       progress = total / count;
-      pencilSound.play();
-      
+      // pencilSound.play();
+
       scoreElement.current.innerHTML = `${progress.toFixed(1)}%`;
       scoreElement.current.style.color = interpolateColor(0, 100, progress);
     }
