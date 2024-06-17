@@ -11,6 +11,17 @@ export interface ProjectI {
 export const projects: ProjectI[] = [
   {
     id: 1,
+    title: "Circle Finger",
+    imgUrl: "circle-finger.jpg",
+    description: `
+    A little fun game keeps unemployment away! 
+    Draw a perfect circle with your finger and see what score you can get!`,
+    stack: ["p5", "tensorflow"],
+    projectLink: "https://karishev.com/circle-finger",
+    ghLink: "https://karishev.com/circle-finger",
+  },
+  {
+    id: 2,
     title: "ASRM (Team Project)",
     imgUrl: "asrm.png",
     description: `
@@ -23,7 +34,7 @@ export const projects: ProjectI[] = [
     ghLink: "https://github.com/ZhomartZhetpisbekov/ASRM-website",
   },
   {
-    id: 2,
+    id: 3,
     title: "Not Parkour",
     imgUrl: "notparkour.png",
     description: `

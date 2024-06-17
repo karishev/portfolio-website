@@ -11,6 +11,10 @@ export default function Document() {
         rel="stylesheet"
         href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
       />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+        rel="stylesheet"
+      />
       <Head />
       <body>
         <Main />

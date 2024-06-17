@@ -25,6 +25,7 @@ const Hero = forwardRef((props, ref) => {
       "https://www.github.com/karishev/",
       "Shyngys Karishev Github",
     ],
+    ["twitter-alt", "https://x.com/_karishev", "Shyngys Karishev Twitter"],
   ];
   return (
     <section ref={heroRef} className={styles.main}>
