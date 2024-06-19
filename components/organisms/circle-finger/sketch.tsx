@@ -28,6 +28,8 @@ const Sketch = () => {
 
   let bestScoreLet = 0;
 
+  const [score, setScore] = useState(0);
+
   const [bestScore, setBestScore] = useState(0);
 
   useEffect(() => {
@@ -286,6 +288,7 @@ const Sketch = () => {
   };
 
   const handleCompleteCircle = (complete: boolean) => {
+    setScore(progress);
     if (progress > bestScoreLet) {
       bestScoreSound?.play();
       bestScoreLet = progress;
@@ -295,7 +298,7 @@ const Sketch = () => {
   };
 
   const tweetScore = () => {
-    const tweetText = `My circle is ${progress.toFixed(
+    const tweetText = `My circle is ${score.toFixed(
       1
     )}% perfect, can you beat that?`;
     const tweetUrl = "https://karishev.com/circle-finger";
@@ -309,7 +312,7 @@ const Sketch = () => {
   };
 
   const copyScoreToClipboard = () => {
-    const message = `My circle  is ${progress.toFixed(
+    const message = `My circle is ${score.toFixed(
       1
     )}% perfect, can you beat that? https://karishev.com/circle-finger`;
     navigator.clipboard.writeText(message).then(
@@ -325,7 +328,9 @@ const Sketch = () => {
   return (
     <div className={styles.container}>
       <div className={styles.instructions}>
-        <p>draw a perferct circle around the dot with your right index finger!</p>
+        <p>
+          draw a perferct circle around the dot with your right index finger!
+        </p>
       </div>
 
       <video ref={videoElement} width="768" height="600" />
