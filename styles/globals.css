@@ -210,7 +210,6 @@ a {
 }
 
 .right {
-  width: 40px;
   position: fixed;
   bottom: 0px;
   right: 4rem;
@@ -218,6 +217,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .right::before {

@@ -43,9 +43,6 @@ const Sketch = () => {
       setBestScore(parseFloat(savedScore));
     }
 
-    setPencilSound(new Audio("/pencil.mp3"));
-    setBestScoreSound(new Audio("/bestscore.mp3"));
-
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === " ") {
         resetDrawing();
