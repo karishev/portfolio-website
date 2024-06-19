@@ -20,6 +20,8 @@
   --cardClr: #243264;
   /* --backClr: #799f7c; */
   --backClr: var(--highlight);
+
+  transition: all 0.5s ease;
 }
 
 *,
@@ -156,6 +158,16 @@ a {
   /* color: var(--light-slate); */
 }
 
+.left::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: calc(100vh);
+
+  margin: 0px auto;
+  background-color: var(--lineClr);
+}
+
 .left:after {
   content: "";
   display: block;
@@ -175,6 +187,7 @@ a {
   list-style: none;
   gap: 1.5rem;
   padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
 }
 
 .main__socials li {
@@ -192,12 +205,85 @@ a {
 
 .main__socials i:hover,
 .main__socials i:focus {
-  color: var(--btnClr) !important;
+  color: var(--btnClr);
   transform: translateY(-4px);
 }
 
 .main__socials i:active {
-  color: var(--btnClr) !important;
+  color: var(--btnClr);
+}
+
+.right {
+  width: 40px;
+  position: fixed;
+  bottom: 0px;
+  right: 4rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: calc(100vh);
+
+  margin: 0px auto;
+  background-color: var(--lineClr);
+}
+
+.right:after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 90px;
+  margin: 0px auto;
+  background-color: var(--lineClr);
+}
+
+.theme_button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--txtClr);
+  padding: 1.5rem;
+  position: relative; /* Add this for relative positioning */
+  overflow: visible; /* Ensure the circle isn't clipped */
+}
+
+.theme_button i {
+  padding: 0.75rem;
+  border-radius: 50%;
+}
+
+.theme_button:hover i {
+  background: var(--highlight);
+  color: var(--btnClr);
+}
+
+.theme_button:hover circle {
+  stroke: var(--btnClr) !important;
+}
+
+@keyframes rotate {
+  from {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+}
+
+.circle-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1; /* Ensure it doesn't interfere with button clicks */
+  animation: rotate 10s linear infinite;
 }
 
 @media screen and (max-width: 65rem) {
@@ -206,6 +292,15 @@ a {
     width: 100%;
     left: 0;
     right: 0;
+  }
+  .left::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 0;
+
+    margin: 0px auto;
+    background-color: var(--lineClr);
   }
   .main__socials {
     width: 100%;
@@ -218,5 +313,8 @@ a {
     font-size: 2rem;
     /* color: var(--txtClr); */
     display: block;
+  }
+  .right {
+    display: none;
   }
 }

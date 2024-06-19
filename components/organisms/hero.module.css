@@ -2,7 +2,7 @@
 
 .main {
   width: 100%;
-  height: calc(100vh - 8rem);
+  height: calc(100vh);
   display: grid;
   place-items: center;
 }

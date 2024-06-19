@@ -27,8 +27,10 @@
 .list {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 8rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4rem;
 }
 
 @media screen and (max-width: 65rem) {
@@ -45,5 +47,9 @@
   .container {
     width: 100%;
     align-items: flex-start;
+  }
+  .list {
+    flex-direction: column;
+    gap: 6rem;
   }
 }

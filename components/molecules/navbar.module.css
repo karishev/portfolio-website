@@ -202,3 +202,10 @@
     display: block;
   }
 }
+
+.btn {
+  position: fixed;
+  bottom: 3rem;
+  right: 1rem;
+  z-index: 10;
+}

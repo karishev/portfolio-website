@@ -7,6 +7,7 @@ import Hero from "@/components/organisms/hero";
 import About from "@/components/organisms/about";
 import Experience from "@/components/organisms/experience";
 import Projects from "@/components/organisms/projects";
+import { useTheme } from "@/components/context/themeContext";
 
 // import dynamic from "next/dynamic";
 
@@ -28,6 +29,7 @@ import Projects from "@/components/organisms/projects";
 
 export default function Home() {
   const { menuOpen } = useContext(StyleContext);
+  const { theme, toggleTheme } = useTheme();
   const heroRef = useRef<HTMLElement>(null);
 
   const expRef = useRef<HTMLElement>(null);
@@ -98,6 +100,29 @@ export default function Home() {
           <About ref={aboutRef} />
           <Experience ref={expRef} />
           <Projects ref={projectsRef} />
+          <div className="right">
+            <button className="theme_button" onClick={toggleTheme}>
+              <svg
+                width="60"
+                height="60"
+                viewBox="0 0 60 60"
+                className="circle-svg"
+              >
+                <circle
+                  cx="30"
+                  cy="30"
+                  r="28"
+                  fill="transparent"
+                  stroke="var(--txtClr)"
+                  strokeWidth="2"
+                  strokeDasharray="5,10"
+                />
+              </svg>
+              <i
+                className={`uil uil-${theme === "light" ? "moon" : "sun"}`}
+              ></i>
+            </button>
+          </div>
           <div className="left">
             <ul className={"main__socials"}>
               {socials.map((name, index) => {
