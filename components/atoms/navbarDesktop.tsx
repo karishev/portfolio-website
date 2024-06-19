@@ -2,14 +2,17 @@ import { useContext } from "react";
 import styles from "../molecules/navbar.module.css";
 import StyleContext from "../context/styleContext";
 import ScrollContext from "../context/scrollContext";
+import { useTheme } from "../context/themeContext";
 
 export interface INavbar {
   elements: string[];
+  withoutProjects?: boolean;
 }
 
-export const NavbarDesktop = ({ elements }: INavbar) => {
+export const NavbarDesktop = ({ elements, withoutProjects }: INavbar) => {
   const { menuOpen, setMenuOpen } = useContext(StyleContext);
-  const {handleClick} = useContext(ScrollContext)
+  const { handleClick } = useContext(ScrollContext);
+  const { toggleTheme } = useTheme();
   const openMenu = () => {
     setMenuOpen((prev) => !prev);
   };
@@ -27,9 +30,15 @@ export const NavbarDesktop = ({ elements }: INavbar) => {
         })}
       </ul>
 
-      <a aria-label="Shyngys Karishev Resume" href="ShyngysKarishev_CV.pdf">
-        <button className={styles.header__contact}>resume</button>
-      </a>
+      {withoutProjects ? (
+        <button onClick={toggleTheme} className={styles.header__contact}>
+          toggle color
+        </button>
+      ) : (
+        <a aria-label="Shyngys Karishev Resume" href="ShyngysKarishev_CV.pdf">
+          <button className={styles.header__contact}>resume</button>
+        </a>
+      )}
       <div
         className={
           menuOpen

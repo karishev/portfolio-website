@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Hands } from "@mediapipe/hands";
 import styles from "./sketch.module.css";
 import {
@@ -9,12 +9,16 @@ import {
   angleDifference,
 } from "./utils";
 
-// const pencilSound = new Audio("/pencil.mp3");
-
 const Sketch = () => {
   const videoElement = useRef<HTMLVideoElement>(null);
   const canvasElement = useRef<HTMLCanvasElement>(null);
   const scoreElement = useRef<HTMLDivElement>(null);
+  const [pencilSound, setPencilSound] = useState<HTMLAudioElement | null>(null);
+  const [bestScoreSound, setBestScoreSound] = useState<HTMLAudioElement | null>(
+    null
+  );
+
+  const [completeCircle, setCompleteCircle] = useState(false);
 
   let drawingPoints: { x: number; y: number }[] = [];
 
@@ -22,9 +26,32 @@ const Sketch = () => {
 
   let progress = 0;
 
-  // const [progress, setProgress] = useState(0);
+  let bestScoreLet = 0;
+
+  const [bestScore, setBestScore] = useState(0);
 
   useEffect(() => {
+    // Update the best score in local storage whenever it changes
+    localStorage.setItem("bestScore", bestScoreLet.toString());
+  }, [bestScoreLet]);
+
+  useEffect(() => {
+    const savedScore = localStorage.getItem("bestScore");
+    if (savedScore) {
+      setBestScore(parseFloat(savedScore));
+    }
+
+    setPencilSound(new Audio("/pencil.mp3"));
+    setBestScoreSound(new Audio("/bestscore.mp3"));
+
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === " ") {
+        resetDrawing();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+
     if (!canvasElement.current) {
       console.error("Canvas element not found");
       return;
@@ -82,40 +109,48 @@ const Sketch = () => {
     };
 
     main();
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
   }, []);
 
-  const onResults = (
-    results: any,
-    canvasCtx: CanvasRenderingContext2D,
-    centerPoint: { x: number; y: number }
-  ) => {
-    canvasCtx.save();
-    canvasCtx.clearRect(
-      0,
-      0,
-      canvasElement.current!.width,
-      canvasElement.current!.height
-    );
-    canvasCtx.translate(canvasElement.current!.width, 0);
-    canvasCtx.scale(-1, 1); // Flip the canvas horizontally
-    canvasCtx.drawImage(
-      results.image,
-      0,
-      0,
-      canvasElement.current!.width,
-      canvasElement.current!.height
-    );
-    drawCenterPoint(canvasCtx, centerPoint);
-    results.multiHandLandmarks.forEach((landmarks: any, index: number) => {
-      drawHand(landmarks, canvasCtx);
-      const hand = results.multiHandedness[index].label;
-      if (hand === "Right") resetDrawing();
-      else if (hand === "Left")
-        trackDrawing(landmarks[8], canvasCtx, centerPoint);
-    });
-    evaluateCircle(centerPoint, canvasCtx);
-    canvasCtx.restore();
-  };
+  const onResults = useCallback(
+    (
+      results: any,
+      canvasCtx: CanvasRenderingContext2D,
+      centerPoint: { x: number; y: number }
+    ) => {
+      canvasCtx.save();
+      canvasCtx.clearRect(
+        0,
+        0,
+        canvasElement.current!.width,
+        canvasElement.current!.height
+      );
+      canvasCtx.translate(canvasElement.current!.width, 0);
+      canvasCtx.scale(-1, 1); // Flip the canvas horizontally
+      canvasCtx.drawImage(
+        results.image,
+        0,
+        0,
+        canvasElement.current!.width,
+        canvasElement.current!.height
+      );
+      drawCenterPoint(canvasCtx, centerPoint);
+      results.multiHandLandmarks.forEach((landmarks: any, index: number) => {
+        drawHand(landmarks, canvasCtx);
+        const hand = results.multiHandedness[index].label;
+        // if (hand === "Right") resetDrawing();
+        if (hand === "Left" && !completeCircle)
+          trackDrawing(landmarks[8], canvasCtx, centerPoint);
+      });
+      evaluateCircle(centerPoint, canvasCtx);
+      canvasCtx.restore();
+    },
+    [completeCircle]
+  );
 
   const drawCenterPoint = (
     ctx: CanvasRenderingContext2D,
@@ -136,12 +171,18 @@ const Sketch = () => {
     const y = fingerTip.y * ctx.canvas.height;
     const currentPoint = { x, y };
 
-    if (isCircleComplete(drawingPoints, centerPoint)) return;
+    if (isCircleComplete(drawingPoints, centerPoint)) {
+      handleCompleteCircle(true);
+      return;
+    }
 
     drawingPoints.push(currentPoint);
-    // pencilSound.play();
+    pencilSound?.play();
 
-    if (isCircleComplete(drawingPoints, centerPoint)) return;
+    if (isCircleComplete(drawingPoints, centerPoint)) {
+      handleCompleteCircle(true);
+      return;
+    }
 
     if (drawingPoints.length > 2) {
       updateDrawingDirection(centerPoint, drawingPoints);
@@ -198,6 +239,11 @@ const Sketch = () => {
     if (!drawingPoints.length) return;
 
     let starting = drawingPoints[0];
+    if (dist(starting, center) < 50) {
+      resetDrawing();
+      return;
+    }
+
     let radius = dist(starting, center);
 
     let total = 0,
@@ -233,19 +279,81 @@ const Sketch = () => {
   const resetDrawing = () => {
     drawingPoints = [];
     progress = 0;
+    setCompleteCircle(false);
     if (scoreElement.current) {
       scoreElement.current.innerHTML = `${progress.toFixed(1)}%`;
     }
   };
 
+  const handleCompleteCircle = (complete: boolean) => {
+    if (progress > bestScoreLet) {
+      bestScoreSound?.play();
+      bestScoreLet = progress;
+      setBestScore(progress);
+    }
+    setCompleteCircle(complete);
+  };
+
+  const tweetScore = () => {
+    const tweetText = `My circle is ${progress.toFixed(
+      1
+    )}% perfect, can you beat that?`;
+    const tweetUrl = "https://karishev.com/circle-finger";
+
+    const via = "_karishev"; // Optional via tag, if you want to mention your account
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      tweetText
+    )}&url=${encodeURIComponent(tweetUrl)}&via=${via}`;
+
+    window.open(url, "_blank");
+  };
+
+  const copyScoreToClipboard = () => {
+    const message = `My circle  is ${progress.toFixed(
+      1
+    )}% perfect, can you beat that? https://karishev.com/circle-finger`;
+    navigator.clipboard.writeText(message).then(
+      () => {
+        console.log("Score copied to clipboard!");
+      },
+      (err) => {
+        console.error("Failed to copy text to clipboard", err);
+      }
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.instructions}>
-        <p>Draw a perferct circle with your finger!</p>
+        <p>draw a perferct circle around the dot with your finger!</p>
       </div>
+
       <video ref={videoElement} width="768" height="600" />
       <canvas ref={canvasElement} width="768" height="600" />
       <div ref={scoreElement} className={styles.score} />
+      <div className={styles.complete}>
+        <div className={styles.instructionsLeft}>
+          <p>press space to restart drawing</p>
+        </div>
+
+        <div className={styles.best}>
+          <p>best score: {bestScore.toFixed(1)}%</p>
+        </div>
+
+        {completeCircle && (
+          <div className={styles.completeButtons}>
+            <button onClick={tweetScore}>tweet</button>
+            <button onClick={copyScoreToClipboard}>copy</button>
+          </div>
+        )}
+      </div>
+
+      <div className={styles.instructionsRight}>
+        <p>
+          got the idea from{" "}
+          <a href="https://neal.fun/perfect-circle/">neal.fun</a>!
+        </p>
+      </div>
     </div>
   );
 };
