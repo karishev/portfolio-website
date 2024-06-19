@@ -325,7 +325,7 @@ const Sketch = () => {
   return (
     <div className={styles.container}>
       <div className={styles.instructions}>
-        <p>draw a perferct circle around the dot with your finger!</p>
+        <p>draw a perferct circle around the dot with your right index finger!</p>
       </div>
 
       <video ref={videoElement} width="768" height="600" />
