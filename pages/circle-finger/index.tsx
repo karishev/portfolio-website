@@ -9,7 +9,11 @@ export default function HandTracker() {
   return (
     <div>
       <Head>
-        <title>Multi-Hand Tracking</title>
+        <title>circle finger!</title>
+        <meta
+          name="description"
+          content="draw a perfect circle with your finger!"
+        />
       </Head>
       <main>
         <NavBar withoutProjects={true} />
