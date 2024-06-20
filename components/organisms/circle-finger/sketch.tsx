@@ -326,7 +326,7 @@ const Sketch = () => {
     <div className={styles.container}>
       <div className={styles.instructions}>
         <p>
-          draw a perferct circle around the dot with your right index finger!
+          draw a perfect circle around the dot with your right index finger!
         </p>
       </div>
 
