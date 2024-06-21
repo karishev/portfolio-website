@@ -59,7 +59,7 @@ const Sketch = ({ isFinger }: { isFinger: boolean }) => {
       return;
     }
 
-    let model;
+    let model: Hands | FaceMesh;
 
     if (isFinger) {
       model = new Hands({
