@@ -2,10 +2,17 @@
 import Head from "next/head";
 
 // Import p5 dynamically to ensure it's not server-side rendered
-import Sketch from "../../components/organisms/circle-finger/sketch";
 import NavBar from "@/components/molecules/navbar";
 import { useTheme } from "@/components/context/themeContext";
 import { useState } from "react";
+
+import dynamic from "next/dynamic";
+const Sketch = dynamic(
+  () => import("../../components/organisms/circle-finger/sketch"),
+  {
+    ssr: false, // This ensures that the component is only loaded and rendered on the client-side
+  }
+);
 
 const socials = [
   [
