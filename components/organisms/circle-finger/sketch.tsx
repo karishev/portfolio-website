@@ -64,26 +64,37 @@ const Sketch = ({ isFinger }: { isFinger: boolean }) => {
       return;
     }
 
-    const modelOptions = {
-      locateFile: (file: string) => {
-        if (isFinger) {
-          return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-        } else {
-          return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
-        }
-      },
-      maxNumHands: isFinger ? 2 : undefined,
-      maxNumFaces: isFinger ? undefined : 1,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5,
-    };
+    let model: Hands | FaceMesh;
 
-    const newModel = isFinger
-      ? new Hands(modelOptions)
-      : new FaceMesh(modelOptions);
+    if (isFinger) {
+      model = new Hands({
+        locateFile: (file) =>
+          `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
+      });
 
-    newModel.onResults((results) => onResults(results, canvasCtx, centerPoint));
+      model.setOptions({
+        maxNumHands: 2,
+        modelComplexity: 1,
+        minDetectionConfidence: 0.7,
+        minTrackingConfidence: 0.5,
+      });
+
+      model.onResults((results) => onResults(results, canvasCtx, centerPoint));
+    } else {
+      model = new FaceMesh({
+        locateFile: (file) =>
+          `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
+      });
+
+      model.setOptions({
+        maxNumFaces: 1,
+        refineLandmarks: true,
+        minDetectionConfidence: 0.5,
+        minTrackingConfidence: 0.5,
+      });
+
+      model.onResults((results) => onResults(results, canvasCtx, centerPoint));
+    }
 
     const setupCamera = async () => {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -103,7 +114,7 @@ const Sketch = ({ isFinger }: { isFinger: boolean }) => {
 
       const sendFrameToModel = () => {
         if (videoElement.current) {
-          newModel.send({ image: videoElement.current }).then(() => {
+          model.send({ image: videoElement.current }).then(() => {
             requestAnimationFrame(sendFrameToModel);
           });
         }
