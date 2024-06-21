@@ -2,17 +2,23 @@ import { useContext } from "react";
 import styles from "../molecules/navbar.module.css";
 import StyleContext from "../context/styleContext";
 import ScrollContext from "../context/scrollContext";
-import { useTheme } from "../context/themeContext";
 
 export interface INavbar {
   elements: string[];
   withoutProjects?: boolean;
+  toggleObject?: () => void;
+  isFinger?: boolean;
 }
 
-export const NavbarDesktop = ({ elements, withoutProjects }: INavbar) => {
+export const NavbarDesktop = ({
+  elements,
+  withoutProjects,
+  toggleObject,
+  isFinger,
+}: INavbar) => {
   const { menuOpen, setMenuOpen } = useContext(StyleContext);
   const { handleClick } = useContext(ScrollContext);
-  const { toggleTheme } = useTheme();
+
   const openMenu = () => {
     setMenuOpen((prev) => !prev);
   };
@@ -31,8 +37,8 @@ export const NavbarDesktop = ({ elements, withoutProjects }: INavbar) => {
       </ul>
 
       {withoutProjects ? (
-        <button onClick={toggleTheme} className={styles.header__contact}>
-          toggle color
+        <button onClick={toggleObject} className={styles.header__contact}>
+          {isFinger ? "change to nose" : "change to finger"}
         </button>
       ) : (
         <a aria-label="Shyngys Karishev Resume" href="ShyngysKarishev_CV.pdf">

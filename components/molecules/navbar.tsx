@@ -7,9 +7,11 @@ import ScrollContext from "../context/scrollContext";
 interface INavBar {
   // handleClick: (target: string) => void;
   withoutProjects?: boolean;
+  toggleObject?: () => void;
+  isFinger?: boolean;
 }
 
-const NavBar = ({ withoutProjects }: INavBar) => {
+const NavBar = ({ withoutProjects, toggleObject, isFinger }: INavBar) => {
   // const nav_elements = ["about", "experience", "projects", "contact"];
   const nav_elements = ["about", "experience", "projects"];
 
@@ -32,6 +34,8 @@ const NavBar = ({ withoutProjects }: INavBar) => {
         </h1>
         <NavbarDesktop
           withoutProjects={withoutProjects}
+          toggleObject={toggleObject}
+          isFinger={isFinger}
           elements={withoutProjects ? [] : nav_elements}
         />
         <NavbarMobile elements={withoutProjects ? [] : nav_elements} />

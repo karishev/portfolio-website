@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Hands } from "@mediapipe/hands";
+import { FaceMesh } from "@mediapipe/face_mesh";
+
 import styles from "./sketch.module.css";
 import {
   drawHand,
@@ -9,7 +11,7 @@ import {
   angleDifference,
 } from "./utils";
 
-const Sketch = () => {
+const Sketch = ({ isFinger }: { isFinger: boolean }) => {
   const videoElement = useRef<HTMLVideoElement>(null);
   const canvasElement = useRef<HTMLCanvasElement>(null);
   const scoreElement = useRef<HTMLDivElement>(null);
@@ -33,16 +35,6 @@ const Sketch = () => {
   const [bestScore, setBestScore] = useState(0);
 
   useEffect(() => {
-    // Update the best score in local storage whenever it changes
-    localStorage.setItem("bestScore", bestScoreLet.toString());
-  }, [bestScoreLet]);
-
-  useEffect(() => {
-    const savedScore = localStorage.getItem("bestScore");
-    if (savedScore) {
-      setBestScore(parseFloat(savedScore));
-    }
-
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === " ") {
         resetDrawing();
@@ -67,19 +59,37 @@ const Sketch = () => {
       return;
     }
 
-    const hands = new Hands({
-      locateFile: (file) =>
-        `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
-    });
+    let model;
 
-    hands.setOptions({
-      maxNumHands: 2,
-      modelComplexity: 1,
-      minDetectionConfidence: 0.7,
-      minTrackingConfidence: 0.5,
-    });
+    if (isFinger) {
+      model = new Hands({
+        locateFile: (file) =>
+          `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
+      });
 
-    hands.onResults((results) => onResults(results, canvasCtx, centerPoint));
+      model.setOptions({
+        maxNumHands: 2,
+        modelComplexity: 1,
+        minDetectionConfidence: 0.7,
+        minTrackingConfidence: 0.5,
+      });
+
+      model.onResults((results) => onResults(results, canvasCtx, centerPoint));
+    } else {
+      model = new FaceMesh({
+        locateFile: (file) =>
+          `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
+      });
+
+      model.setOptions({
+        maxNumFaces: 1,
+        refineLandmarks: true,
+        minDetectionConfidence: 0.5,
+        minTrackingConfidence: 0.5,
+      });
+
+      model.onResults((results) => onResults(results, canvasCtx, centerPoint));
+    }
 
     const setupCamera = async () => {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -97,14 +107,14 @@ const Sketch = () => {
       await setupCamera();
       videoElement.current?.play();
 
-      const sendFrameToHandpose = () => {
+      const sendFrameToModel = () => {
         if (videoElement.current) {
-          hands.send({ image: videoElement.current }).then(() => {
-            requestAnimationFrame(sendFrameToHandpose);
+          model.send({ image: videoElement.current }).then(() => {
+            requestAnimationFrame(sendFrameToModel);
           });
         }
       };
-      sendFrameToHandpose();
+      sendFrameToModel();
     };
 
     main();
@@ -138,13 +148,23 @@ const Sketch = () => {
         canvasElement.current!.height
       );
       drawCenterPoint(canvasCtx, centerPoint);
-      results.multiHandLandmarks.forEach((landmarks: any, index: number) => {
-        drawHand(landmarks, canvasCtx);
-        const hand = results.multiHandedness[index].label;
-        // if (hand === "Right") resetDrawing();
-        if (hand === "Left" && !completeCircle)
-          trackDrawing(landmarks[8], canvasCtx, centerPoint);
-      });
+      if (isFinger) {
+        results.multiHandLandmarks.forEach((landmarks: any, index: number) => {
+          drawHand(landmarks, canvasCtx);
+          const hand = results.multiHandedness[index].label;
+          // if (hand === "Right") resetDrawing();
+          if (hand === "Left" && !completeCircle)
+            trackDrawing(landmarks[8], canvasCtx, centerPoint);
+        });
+      } else {
+        if (
+          results.multiFaceLandmarks &&
+          results.multiFaceLandmarks.length > 0
+        ) {
+          const noseTip = results.multiFaceLandmarks[0][4]; // Getting the nose tip position
+          trackDrawing(noseTip, canvasCtx, centerPoint);
+        }
+      }
       evaluateCircle(centerPoint, canvasCtx);
       canvasCtx.restore();
     },
@@ -295,9 +315,9 @@ const Sketch = () => {
   };
 
   const tweetScore = () => {
-    const tweetText = `My circle is ${score.toFixed(
-      1
-    )}% perfect, can you beat that?`;
+    const tweetText = `My circle is ${score.toFixed(1)}% perfect ${
+      isFinger ? "drawn with my finger" : "drawn with my nose"
+    }, can you beat that?`;
     const tweetUrl = "https://karishev.com/circle-finger";
 
     const via = "_karishev"; // Optional via tag, if you want to mention your account
@@ -309,9 +329,9 @@ const Sketch = () => {
   };
 
   const copyScoreToClipboard = () => {
-    const message = `My circle is ${score.toFixed(
-      1
-    )}% perfect, can you beat that? https://karishev.com/circle-finger`;
+    const message = `My circle is ${score.toFixed(1)}% perfect ${
+      isFinger ? "drawn with my finger" : "drawn with my nose"
+    }, can you beat that? https://karishev.com/circle-finger`;
     navigator.clipboard.writeText(message).then(
       () => {
         console.log("Score copied to clipboard!");
@@ -326,7 +346,8 @@ const Sketch = () => {
     <div className={styles.container}>
       <div className={styles.instructions}>
         <p>
-          draw a perfect circle around the dot with your right index finger!
+          draw a perfect circle around the dot with your{" "}
+          {isFinger ? "right index finger" : "nose"}!
         </p>
       </div>
 
@@ -335,7 +356,9 @@ const Sketch = () => {
       <div ref={scoreElement} className={styles.score} />
       <div className={styles.complete}>
         <div className={styles.instructionsLeft}>
-          <p>press space to restart drawing</p>
+          <p className={!completeCircle ? styles.hidden : styles.highlight}>
+            press space to restart drawing
+          </p>
         </div>
 
         <div className={styles.best}>

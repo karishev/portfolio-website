@@ -61,9 +61,8 @@
 
 .complete {
   position: absolute;
-  bottom: 10rem;
-  left: 50%;
-  transform: translate(-50%, 100%);
+  bottom: 1rem;
+
   font-size: 2rem;
   display: flex;
   flex-direction: column;
@@ -98,9 +97,24 @@
   font-size: 1rem;
 }
 
+.instructionsLeft p {
+  text-align: center;
+}
+
 .instructionsRight {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
   font-size: 0.75rem;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.highlight {
+  background-color: var(--highlight);
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.25rem;
+  color: var(--btnClr);
 }
