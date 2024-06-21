@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Hands } from "@mediapipe/hands";
 import { FaceMesh } from "@mediapipe/face_mesh";
@@ -35,6 +37,9 @@ const Sketch = ({ isFinger }: { isFinger: boolean }) => {
   const [bestScore, setBestScore] = useState(0);
 
   useEffect(() => {
+    // Only execute this effect client-side
+    if (typeof window === "undefined") return;
+
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === " ") {
         resetDrawing();
